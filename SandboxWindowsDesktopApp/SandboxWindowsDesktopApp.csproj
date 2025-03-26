@@ -11,6 +11,7 @@
 
   <ItemGroup>
 		<!-- WebView.Wpf package added to enable BlazorWebView WPF component support -->
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebView.Wpf" Version="9.0.40" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.3" />
   </ItemGroup>

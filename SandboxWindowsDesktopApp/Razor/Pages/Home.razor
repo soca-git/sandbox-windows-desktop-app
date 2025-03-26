@@ -1,7 +1,8 @@
-﻿@page "/"
+﻿@using SandboxWindowsDesktopApp.ViewModels
 
 <div class="buttons">
-	<button>ButtonA</button>
-	<button>ButtonB</button>
-	<button>ButtonC</button>
+	<button disabled="@(!ViewModel.ButtonA.CanExecute(null))" @onclick="ViewModel.ButtonA.Execute">ButtonA</button>
+	<button disabled="@(!ViewModel.ButtonB.CanExecute(null))" @onclick="ViewModel.ButtonB.Execute">@(nameof(ViewModel.ButtonB))</button>
+	<button disabled="@(!ViewModel.ButtonC.CanExecute(null))" @onclick="ViewModel.ButtonC.Execute">@(nameof(ViewModel.ButtonC))</button>
+	<p>@(ViewModel.SomeText)</p>
 </div>

@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using SandboxWindowsDesktopApp.ViewModels;
 using System.Windows;
 
 namespace SandboxWindowsDesktopApp;
@@ -14,6 +15,7 @@ public partial class MainWindow : Window
 
         ServiceCollection serviceCollection = new();
         serviceCollection.AddWpfBlazorWebView();
+        serviceCollection.AddTransient<MainWindowViewModel>();
 
         ServiceProvider serviceProvider = serviceCollection.BuildServiceProvider();
 
