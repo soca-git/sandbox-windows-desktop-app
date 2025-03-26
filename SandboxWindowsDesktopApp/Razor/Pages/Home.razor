@@ -1,8 +1,10 @@
 ﻿@using SandboxWindowsDesktopApp.ViewModels
 
 <div class="buttons">
-	<button disabled="@(!ViewModel.ButtonA.CanExecute(null))" @onclick="ViewModel.ButtonA.Execute">ButtonA</button>
-	<button disabled="@(!ViewModel.ButtonB.CanExecute(null))" @onclick="ViewModel.ButtonB.Execute">@(nameof(ViewModel.ButtonB))</button>
-	<button disabled="@(!ViewModel.ButtonC.CanExecute(null))" @onclick="ViewModel.ButtonC.Execute">@(nameof(ViewModel.ButtonC))</button>
-	<p>@(ViewModel.SomeText)</p>
+	<button disabled="@(!ViewModel.BeepCommand.CanExecute(null))" @onclick="ViewModel.BeepCommand.Execute">Play sound</button>
+	<button disabled="@(!ViewModel.InactiveCommand.CanExecute(null))" @onclick="ViewModel.InactiveCommand.Execute">Inactive</button>
+	<button disabled="@(!ViewModel.StartCounterCommand.CanExecute(null))" @onclick="ViewModel.StartCounterCommand.Execute">Start counter</button>
+	<button disabled="@(!ViewModel.StopCounterCommand.CanExecute(null))" @onclick="ViewModel.StopCounterCommand.Execute">Stop counter</button>
+	<p>@ViewModel.SomeText</p>
+	<p>Counter: @ViewModel.Counter</p>
 </div>

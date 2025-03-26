@@ -6,17 +6,50 @@ namespace SandboxWindowsDesktopApp.ViewModels
 {
     public class MainWindowViewModel
     {
+        private CancellationTokenSource counterToken = new();
+
         public MainWindowViewModel()
         {
-            this.ButtonA = new RelayCommand(() => SystemSounds.Beep.Play(), () => true);
-            this.ButtonB = new RelayCommand(() => SystemSounds.Beep.Play(), () => false);
-            this.ButtonC = new RelayCommand(() => SystemSounds.Beep.Play(), () => true);
+            this.BeepCommand = new RelayCommand(() => SystemSounds.Beep.Play(), () => true);
+            this.InactiveCommand = new RelayCommand(() => {}, () => false);
+
+            this.StartCounterCommand = new AsyncRelayCommand(async () =>
+            {
+                this.counterToken = new();
+
+                while (!this.counterToken.IsCancellationRequested)
+                {
+                    this.Counter++;
+
+                    try
+                    {
+                        await Task.Delay(1000, this.counterToken.Token);
+                    }
+                    catch (OperationCanceledException)
+                    {
+                    }
+                }
+
+                await Task.CompletedTask;
+            });
+
+            this.StopCounterCommand = new RelayCommand(() =>
+            {
+                this.counterToken.Cancel();
+            }, () => !this.StartCounterCommand.CanExecute(null));
         }
 
-        public ICommand ButtonA { get; init; }
-        public ICommand ButtonB { get; init; }
-        public ICommand ButtonC { get; init; }
+        public event EventHandler StateChanged;
+
+        public ICommand BeepCommand { get; init; }
+        public ICommand InactiveCommand { get; init; }
+
+        public ICommand StartCounterCommand { get; init; }
+
+        public ICommand StopCounterCommand { get; init; }
 
         public string SomeText => $"This is a some sample text from the {nameof(MainWindowViewModel)}";
+
+        public int Counter { get; private set; }
     }
 }
