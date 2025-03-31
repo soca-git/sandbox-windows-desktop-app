@@ -7,6 +7,8 @@ namespace SandboxWindowsDesktopApp.ViewModels
 {
     public class MainWindowViewModel : INotifyPropertyChanged
     {
+        private WindowA? windowA;
+
         private int counter;
         private bool counterActive;
         private CancellationTokenSource counterToken = new();
@@ -16,9 +18,14 @@ namespace SandboxWindowsDesktopApp.ViewModels
             this.BeepCommand = new RelayCommand(() =>
             {
                 SystemSounds.Beep.Play();
-                WindowA a = new();
-                a.Show();
             });
+
+            this.OpenAnotherWindowCommand = new RelayCommand(() =>
+            {
+                this.windowA ??= new();
+                this.windowA.Show();
+            }, () => !this.windowA?.IsVisible ?? true);
+
             this.InactiveCommand = new RelayCommand(() => {}, () => false);
 
             this.StartCounterCommand = new AsyncRelayCommand(async () =>
@@ -53,6 +60,9 @@ namespace SandboxWindowsDesktopApp.ViewModels
         public event PropertyChangedEventHandler? PropertyChanged;
 
         public ICommand BeepCommand { get; init; }
+
+        public ICommand OpenAnotherWindowCommand { get; init; }
+
         public ICommand InactiveCommand { get; init; }
 
         public ICommand StartCounterCommand { get; init; }
