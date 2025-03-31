@@ -6,7 +6,7 @@
 
 <h3>[Component] Home</h3>
 <div class="buttons">
-	<CommandButton Command="@ViewModel.BeepCommand" Text="Play sound" Styles="custom-button" />
+	<StyledCommandButton Command="@ViewModel.BeepCommand" Text="Play sound" />
 	<CommandButton Command="@ViewModel.InactiveCommand" Text="Inactive" />
 	<CommandButton Command="@ViewModel.StartCounterCommand" Text="@(Observed(() => ViewModel.CounterActive) ? "Stop" : "Start")" />
 	<CounterDisplay Counter="@Observed(() => ViewModel.Counter)" />

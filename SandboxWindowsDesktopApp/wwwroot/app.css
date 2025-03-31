@@ -10,12 +10,3 @@ button {
     display: flex;
     flex-direction: column;
 }
-
-.custom-button {
-    border: 1px solid orangered;
-    border-radius: 5px;
-}
-
-.custom-button:hover {
-    border: 1px solid lightgreen;
-}
