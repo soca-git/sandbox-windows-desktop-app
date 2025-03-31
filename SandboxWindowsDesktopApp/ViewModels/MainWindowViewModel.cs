@@ -13,7 +13,12 @@ namespace SandboxWindowsDesktopApp.ViewModels
 
         public MainWindowViewModel()
         {
-            this.BeepCommand = new RelayCommand(() => SystemSounds.Beep.Play());
+            this.BeepCommand = new RelayCommand(() =>
+            {
+                SystemSounds.Beep.Play();
+                WindowA a = new();
+                a.Show();
+            });
             this.InactiveCommand = new RelayCommand(() => {}, () => false);
 
             this.StartCounterCommand = new AsyncRelayCommand(async () =>
