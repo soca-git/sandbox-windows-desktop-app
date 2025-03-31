@@ -4,13 +4,13 @@
 @inherits ReactiveComponentBase
 @inject MainWindowViewModel ViewModel
 
+<h3>[Component] Home</h3>
 <div class="buttons">
-	<button disabled="@(!ViewModel.BeepCommand.CanExecute(null))" @onclick="ViewModel.BeepCommand.Execute">Play sound</button>
-	<button disabled="@(!ViewModel.InactiveCommand.CanExecute(null))" @onclick="ViewModel.InactiveCommand.Execute">Inactive</button>
-	<button @onclick="ViewModel.StartCounterCommand.Execute">
-		@(ViewModel.CounterActive ? "Stop" : "Start")
-	</button>
-	<p>@ViewModel.SomeText</p>
-	<p>Observed Counter: @Observed(() => ViewModel.Counter)</p>
+	<CommandButton Command="@ViewModel.BeepCommand" Text="Play sound" Styles="custom-button" />
+	<CommandButton Command="@ViewModel.InactiveCommand" Text="Inactive" />
+	<CommandButton Command="@ViewModel.StartCounterCommand" Text="@(Observed(() => ViewModel.CounterActive) ? "Stop" : "Start")" />
+	<CounterDisplay Counter="@Observed(() => ViewModel.Counter)" />
+	<TextDisplay Text="@Observed(() => ViewModel.SomeText)" />
+
 	<button @onclick=@(() => InvokeAsync(StateHasChanged))>Render</button>
 </div>

@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using Phork.Blazor;
-using SandboxWindowsDesktopApp.ViewModels;
+using SandboxWindowsDesktopApp.Extensions;
+using SandboxWindowsDesktopApp.ViewModels.Extensions;
 using System.Windows;
 
 namespace SandboxWindowsDesktopApp;
@@ -15,12 +15,12 @@ public partial class MainWindow : Window
         InitializeComponent();
 
         ServiceCollection serviceCollection = new();
-        serviceCollection.AddWpfBlazorWebView();
-        serviceCollection.AddPhorkBlazorReactivity();
-        serviceCollection.AddTransient<MainWindowViewModel>();
+        serviceCollection
+            .AddRazorComponentsSupport()
+            .ConfigureViewModels();
 
         ServiceProvider serviceProvider = serviceCollection.BuildServiceProvider();
 
-        Resources.Add("services", serviceProvider);
+        Resources.AddRazorComponentsSupport(serviceProvider);
     }
 }

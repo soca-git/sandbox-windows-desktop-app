@@ -1,0 +1,14 @@
+﻿@using System.Windows.Input
+
+<button class="@Styles" disabled="@(!Command.CanExecute(null))" @onclick="Command.Execute">@Text</button>
+
+@code {
+	[Parameter]
+	public required ICommand Command { get; set; }
+
+	[Parameter]
+	public required string Text { get; set; }
+
+	[Parameter]
+	public string? Styles { get; set; }
+}

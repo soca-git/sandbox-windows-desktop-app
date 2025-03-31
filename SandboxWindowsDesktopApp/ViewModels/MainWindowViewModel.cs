@@ -8,11 +8,12 @@ namespace SandboxWindowsDesktopApp.ViewModels
     public class MainWindowViewModel : INotifyPropertyChanged
     {
         private int counter;
+        private bool counterActive;
         private CancellationTokenSource counterToken = new();
 
         public MainWindowViewModel()
         {
-            this.BeepCommand = new RelayCommand(() => SystemSounds.Beep.Play(), () => true);
+            this.BeepCommand = new RelayCommand(() => SystemSounds.Beep.Play());
             this.InactiveCommand = new RelayCommand(() => {}, () => false);
 
             this.StartCounterCommand = new AsyncRelayCommand(async () =>
@@ -33,7 +34,7 @@ namespace SandboxWindowsDesktopApp.ViewModels
 
                     try
                     {
-                        await Task.Delay(1000, this.counterToken.Token);
+                        await Task.Delay(500, this.counterToken.Token);
                     }
                     catch (OperationCanceledException)
                     {
@@ -41,7 +42,7 @@ namespace SandboxWindowsDesktopApp.ViewModels
                 }
 
                 await Task.CompletedTask;
-            });
+            }, AsyncRelayCommandOptions.AllowConcurrentExecutions);
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;
@@ -63,6 +64,14 @@ namespace SandboxWindowsDesktopApp.ViewModels
             }
         }
 
-        public bool CounterActive { get; set; }
+        public bool CounterActive
+        {
+            get => this.counterActive;
+            set
+            {
+                this.counterActive = value;
+                this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CounterActive)));
+            }
+        }
     }
 }

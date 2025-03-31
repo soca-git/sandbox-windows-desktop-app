@@ -7,7 +7,7 @@
         xmlns:b="http://schemas.microsoft.com/winfx/2006/xaml/presentation/blazor"
         xmlns:vm="clr-namespace:SandboxWindowsDesktopApp.ViewModels"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="650" Width="800">
 
     <Window.DataContext>
         <vm:MainWindowViewModel />
@@ -19,12 +19,21 @@
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <StackPanel Grid.Column="0">
+        <!--<StackPanel Grid.Column="0">
             <TextBlock Text="WPF" HorizontalAlignment="Center" />
             <Button Content="ButtonA" Command="{Binding ButtonA}" />
             <Button Content="ButtonB" Command="{Binding ButtonB}" />
             <Button Content="ButtonC" Command="{Binding ButtonC}" />
             <TextBlock Text="{Binding SomeText}" />
+        </StackPanel>-->
+
+        <StackPanel Orientation="Vertical" Grid.Column="0">
+            <TextBlock Text="BlazorWebView" HorizontalAlignment="Center" />
+            <b:BlazorWebView Height="400" HostPage="wwwroot/index.html" Services="{DynamicResource services}">
+                <b:BlazorWebView.RootComponents>
+                    <b:RootComponent Selector="#app" ComponentType="{x:Type pages:Home}" />
+                </b:BlazorWebView.RootComponents>
+            </b:BlazorWebView>
         </StackPanel>
 
         <StackPanel Orientation="Vertical" Grid.Column="1">
