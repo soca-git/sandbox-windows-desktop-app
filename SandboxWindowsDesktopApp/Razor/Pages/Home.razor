@@ -1,10 +1,16 @@
-﻿@using SandboxWindowsDesktopApp.ViewModels
+﻿@using Phork.Blazor
+@using SandboxWindowsDesktopApp.ViewModels
+
+@inherits ReactiveComponentBase
+@inject MainWindowViewModel ViewModel
 
 <div class="buttons">
 	<button disabled="@(!ViewModel.BeepCommand.CanExecute(null))" @onclick="ViewModel.BeepCommand.Execute">Play sound</button>
 	<button disabled="@(!ViewModel.InactiveCommand.CanExecute(null))" @onclick="ViewModel.InactiveCommand.Execute">Inactive</button>
-	<button disabled="@(!ViewModel.StartCounterCommand.CanExecute(null))" @onclick="ViewModel.StartCounterCommand.Execute">Start counter</button>
-	<button disabled="@(!ViewModel.StopCounterCommand.CanExecute(null))" @onclick="ViewModel.StopCounterCommand.Execute">Stop counter</button>
+	<button @onclick="ViewModel.StartCounterCommand.Execute">
+		@(ViewModel.CounterActive ? "Stop" : "Start")
+	</button>
 	<p>@ViewModel.SomeText</p>
-	<p>Counter: @ViewModel.Counter</p>
+	<p>Observed Counter: @Observed(() => ViewModel.Counter)</p>
+	<button @onclick=@(() => InvokeAsync(StateHasChanged))>Render</button>
 </div>

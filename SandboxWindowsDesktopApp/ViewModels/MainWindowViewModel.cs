@@ -1,11 +1,13 @@
-﻿using System.Media;
+﻿using System.ComponentModel;
+using System.Media;
 using System.Windows.Input;
 using CommunityToolkit.Mvvm.Input;
 
 namespace SandboxWindowsDesktopApp.ViewModels
 {
-    public class MainWindowViewModel
+    public class MainWindowViewModel : INotifyPropertyChanged
     {
+        private int counter;
         private CancellationTokenSource counterToken = new();
 
         public MainWindowViewModel()
@@ -15,7 +17,15 @@ namespace SandboxWindowsDesktopApp.ViewModels
 
             this.StartCounterCommand = new AsyncRelayCommand(async () =>
             {
+                if (this.CounterActive)
+                {
+                    this.counterToken.Cancel();
+                    this.CounterActive = false;
+                    return;
+                }
+
                 this.counterToken = new();
+                this.CounterActive = true;
 
                 while (!this.counterToken.IsCancellationRequested)
                 {
@@ -32,24 +42,27 @@ namespace SandboxWindowsDesktopApp.ViewModels
 
                 await Task.CompletedTask;
             });
-
-            this.StopCounterCommand = new RelayCommand(() =>
-            {
-                this.counterToken.Cancel();
-            }, () => !this.StartCounterCommand.CanExecute(null));
         }
 
-        public event EventHandler StateChanged;
+        public event PropertyChangedEventHandler? PropertyChanged;
 
         public ICommand BeepCommand { get; init; }
         public ICommand InactiveCommand { get; init; }
 
         public ICommand StartCounterCommand { get; init; }
 
-        public ICommand StopCounterCommand { get; init; }
-
         public string SomeText => $"This is a some sample text from the {nameof(MainWindowViewModel)}";
 
-        public int Counter { get; private set; }
+        public int Counter
+        {
+            get => this.counter;
+            set
+            {
+                this.counter = value;
+                this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Counter)));
+            }
+        }
+
+        public bool CounterActive { get; set; }
     }
 }

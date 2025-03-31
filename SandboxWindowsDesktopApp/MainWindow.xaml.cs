@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Phork.Blazor;
 using SandboxWindowsDesktopApp.ViewModels;
 using System.Windows;
 
@@ -15,6 +16,7 @@ public partial class MainWindow : Window
 
         ServiceCollection serviceCollection = new();
         serviceCollection.AddWpfBlazorWebView();
+        serviceCollection.AddPhorkBlazorReactivity();
         serviceCollection.AddTransient<MainWindowViewModel>();
 
         ServiceProvider serviceProvider = serviceCollection.BuildServiceProvider();
