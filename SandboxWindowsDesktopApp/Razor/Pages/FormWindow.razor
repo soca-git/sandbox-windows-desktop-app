@@ -1,0 +1,40 @@
+﻿@using Phork.Blazor
+@using SandboxWindowsDesktopApp.ViewModels
+@using System.Diagnostics
+
+@inherits ReactiveComponentBase
+@inject FormWindowViewModel ViewModel
+
+<h3>FormWindow</h3>
+
+<EditForm Model=@ViewModel OnSubmit=@Submit>
+	<DataAnnotationsValidator />
+	<ValidationSummary />
+	<div>
+		<label>
+			Name:
+			<InputText  @bind-Value=ViewModel.Name />
+		</label>
+		<label>
+			Description:
+			<InputText @bind-Value=ViewModel.Description />
+		</label>
+	</div>
+
+	<button class="btn-outline-success" type="submit">Save</button>
+</EditForm>
+
+@code
+{
+	public void Submit(EditContext editContext)
+	{
+		if (editContext.Validate())
+		{
+			Debug.WriteLine("Saved!");
+		}
+		else
+		{
+			Debug.WriteLine("Invalid input...");
+		}
+	}
+}

@@ -1,5 +1,0 @@
-﻿@using System.Windows.Input
-
-@inherits CommandButton
-
-<button disabled="@(!Command.CanExecute(null))" @onclick="Command.Execute">@Text</button>

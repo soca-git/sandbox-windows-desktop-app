@@ -1,6 +1,6 @@
 ﻿@using System.Windows.Input
 
-<button class="@Styles" disabled="@(!Command.CanExecute(null))" @onclick="Command.Execute">@Text</button>
+<button class="btn-dark @Styles" disabled="@(!Command.CanExecute(null))" @onclick="Command.Execute">@Text</button>
 
 @code {
 	[Parameter]

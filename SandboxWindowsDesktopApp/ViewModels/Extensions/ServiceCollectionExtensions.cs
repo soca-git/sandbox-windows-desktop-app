@@ -6,8 +6,8 @@ namespace SandboxWindowsDesktopApp.ViewModels.Extensions
     {
         public static ServiceCollection ConfigureViewModels(this ServiceCollection services)
         {
-            //services.AddTransient<MainWindowViewModel>();
             services.AddSingleton<MainWindowViewModel>();
+            services.AddSingleton<FormWindowViewModel>();
 
             return services;
         }

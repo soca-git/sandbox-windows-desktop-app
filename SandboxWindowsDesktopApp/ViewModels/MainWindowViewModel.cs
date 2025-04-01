@@ -55,6 +55,8 @@ namespace SandboxWindowsDesktopApp.ViewModels
 
                 await Task.CompletedTask;
             }, AsyncRelayCommandOptions.AllowConcurrentExecutions);
+
+            this.SomeText = $"This is a some sample text from the {nameof(MainWindowViewModel)}";
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;
@@ -67,7 +69,7 @@ namespace SandboxWindowsDesktopApp.ViewModels
 
         public ICommand StartCounterCommand { get; init; }
 
-        public string SomeText => $"This is a some sample text from the {nameof(MainWindowViewModel)}";
+        public string SomeText { get; set; }
 
         public int Counter
         {

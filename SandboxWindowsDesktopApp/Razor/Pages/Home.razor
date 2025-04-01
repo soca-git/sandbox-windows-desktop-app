@@ -3,15 +3,18 @@
 
 @inherits ReactiveComponentBase
 @inject MainWindowViewModel ViewModel
+@inject FormWindowViewModel AnotherViewModel
 
 <h3>[Component] Home</h3>
 <div class="buttons">
-	<StyledCommandButton Command="@ViewModel.BeepCommand" Text="Play sound" />
+	<CommandButton Command="@ViewModel.BeepCommand" Text="Play sound" />
 	<CommandButton Command="@ViewModel.OpenAnotherWindowCommand" Text="Open another window" />
 	<CommandButton Command="@ViewModel.InactiveCommand" Text="Inactive" />
 	<CommandButton Command="@ViewModel.StartCounterCommand" Text="@(Observed(() => ViewModel.CounterActive) ? "Stop" : "Start")" />
 	<CounterDisplay Counter="@Observed(() => ViewModel.Counter)" />
 	<TextDisplay Text="@Observed(() => ViewModel.SomeText)" />
+	<TextDisplay Text="@Observed(() => AnotherViewModel.Name)" />
+	<TextDisplay Text="@Observed(() => AnotherViewModel.Description)" />
 
 	<button @onclick=@(() => InvokeAsync(StateHasChanged))>Render</button>
 </div>

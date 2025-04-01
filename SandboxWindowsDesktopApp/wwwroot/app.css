@@ -1,13 +1,5 @@
+
 html, body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     scrollbar-width: thin;
-}
-
-button {
-    margin: 2px;
-}
-
-.buttons {
-    display: flex;
-    flex-direction: column;
 }
