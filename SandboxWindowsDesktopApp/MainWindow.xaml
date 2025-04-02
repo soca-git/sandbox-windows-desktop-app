@@ -13,7 +13,6 @@
         SizeToContent="Height">
 
    <StackPanel Orientation="Vertical" Grid.Column="1">
-      <TextBlock Text="BlazorWebView" Background="SlateBlue" Foreground="White" TextAlignment="Center" Padding="10" />
       <b:BlazorWebView Name="WebViewComponent" Height="800" HostPage="wwwroot/index.html" Services="{DynamicResource services}">
          <b:BlazorWebView.RootComponents>
             <b:RootComponent Selector="#app" ComponentType="{x:Type pages:Home}" />

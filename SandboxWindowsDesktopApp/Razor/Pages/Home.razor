@@ -5,7 +5,24 @@
 @inject MainWindowViewModel ViewModel
 @inject FormWindowViewModel AnotherViewModel
 
+<header class="mdc-top-app-bar mdc-top-app-bar--short">
+   <div class="mdc-top-app-bar__row">
+      <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+         <button class="material-icons mdc-top-app-bar__navigation-icon mdc-icon-button">menu</button>
+      </section>
+      <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
+         <button class="material-icons mdc-top-app-bar__action-item mdc-icon-button">settings</button>
+      </section>
+   </div>
+</header>
+
 <div class="home-container">
-	<CommandButton Command="@ViewModel.OpenWindowA" Text="Open blazor window" />
-	<CommandButton Command="@ViewModel.OpenWindowB" Text="Open xaml window" />
+
+	<div class="navigation-bar">
+		<CommandButton Command="@ViewModel.OpenWindowA" Text="Open blazor window" />
+		<CommandButton Command="@ViewModel.OpenWindowB" Text="Open xaml window" />
+	</div>
+
+	<div class="content">
+	</div>
 </div>
