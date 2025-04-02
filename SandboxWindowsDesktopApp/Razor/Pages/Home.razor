@@ -6,12 +6,10 @@
 @inject FormWindowViewModel AnotherViewModel
 
 <div class="home-container">
-	<h3>[Component] Home</h3>
-
 	<CommandButton Command="@ViewModel.BeepCommand" Text="Play sound" />
 	<CommandButton Command="@ViewModel.OpenAnotherWindowCommand" Text="Open another window" />
 	<CommandButton Command="@ViewModel.InactiveCommand" Text="Inactive" />
-	<CommandButton Command="@ViewModel.StartCounterCommand" Text="@(Observed(() => ViewModel.CounterActive) ? "Stop" : "Start")" />
+	<CommandButton Command="@ViewModel.StartCounterCommand" Text="@(Observed(() => ViewModel.CounterActive) ? "Stop Counter" : "Start Counter")" />
 	<CounterDisplay Counter="@Observed(() => ViewModel.Counter)" />
 	<TextDisplay Text="@Observed(() => ViewModel.SomeText)" />
 	<TextDisplay Text="@Observed(() => AnotherViewModel.Name)" />

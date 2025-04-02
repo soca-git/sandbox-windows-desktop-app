@@ -30,7 +30,7 @@
         </StackPanel>
 
         <StackPanel Orientation="Vertical" Grid.Column="1">
-            <TextBlock Text="BlazorWebView" HorizontalAlignment="Center" />
+         <TextBlock Text="BlazorWebView" Background="SlateBlue" Foreground="White" TextAlignment="Center" />
             <b:BlazorWebView Name="WebViewComponent" Height="750" HostPage="wwwroot/index.html" Services="{DynamicResource services}">
                 <b:BlazorWebView.RootComponents>
                     <b:RootComponent Selector="#app" ComponentType="{x:Type pages:Home}" />

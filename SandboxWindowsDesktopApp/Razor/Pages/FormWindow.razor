@@ -5,36 +5,52 @@
 @inherits ReactiveComponentBase
 @inject FormWindowViewModel ViewModel
 
-<h3>FormWindow</h3>
-
-<EditForm Model=@ViewModel OnSubmit=@Submit>
-	<DataAnnotationsValidator />
-	<ValidationSummary />
-	<div>
-		<label>
-			Name:
-			<InputText  @bind-Value=ViewModel.Name />
-		</label>
-		<label>
-			Description:
-			<InputText @bind-Value=ViewModel.Description />
-		</label>
-	</div>
-
-	<button class="btn-outline-success" type="submit">Save</button>
-</EditForm>
+<div class="mdc-dialog mdc-dialog--open mdc-dialog--fullscreen">
+   <div class="mdc-dialog__container">
+      <div class="mdc-dialog__surface" role="dialog" aria-modal="true" aria-labelledby="my-dialog-title" aria-describedby="my-dialog-content">
+         <div class="mdc-dialog__header">
+            <h2 class="mdc-dialog__title" id="my-dialog-title">
+               Form Window
+            </h2>
+            <button class="mdc-icon-button material-icons mdc-dialog__close" data-mdc-dialog-action="close">info</button>
+         </div>
+         <div class="mdc-dialog__content" id="my-dialog-content">
+            <EditForm Model=@ViewModel OnSubmit=@Submit>
+               <DataAnnotationsValidator />
+               <ValidationSummary />
+               <div>
+                  <label class="mdc-text-field mdc-text-field--no-label mdc-text-field--filled">
+                     <InputText class="mdc-text-field__input" @bind-Value=ViewModel.Name placeholder="Name" />
+                  </label>
+                  <label class="mdc-text-field mdc-text-field--no-label mdc-text-field--filled">
+                     <InputText class="mdc-text-field__input" @bind-Value=ViewModel.Description placeholder="Description" />
+                  </label>
+               </div>
+            </EditForm>
+         </div>
+         <div class="mdc-dialog__actions">
+            <button type="button" class="mdc-button mdc-button--outlined mdc-dialog__button"
+            data-mdc-dialog-action="ok">
+               <div class="mdc-button__ripple"></div>
+               <span class="mdc-button__label">Save</span>
+            </button>
+         </div>
+      </div>
+   </div>
+   <div class="mdc-dialog__scrim"></div>
+</div>
 
 @code
 {
-	public void Submit(EditContext editContext)
-	{
-		if (editContext.Validate())
-		{
-			Debug.WriteLine("Saved!");
-		}
-		else
-		{
-			Debug.WriteLine("Invalid input...");
-		}
-	}
+   public void Submit(EditContext editContext)
+   {
+      if (editContext.Validate())
+      {
+         Debug.WriteLine("Saved!");
+      }
+      else
+      {
+         Debug.WriteLine("Invalid input...");
+      }
+   }
 }

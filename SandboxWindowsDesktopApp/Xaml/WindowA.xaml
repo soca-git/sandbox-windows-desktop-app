@@ -17,7 +17,7 @@
     </Window.DataContext>
 
     <StackPanel Orientation="Vertical">
-        <TextBlock Text="BlazorWebView" TextAlignment="Center" Background="Black" Foreground="White" Padding="10" />
+        <TextBlock TextAlignment="Center" Background="SlateBlue" Foreground="White" Padding="5" />
         <b:BlazorWebView Name="WebViewComponent" Width="400" Height="600" HostPage="wwwroot/index.html" Services="{DynamicResource services}">
             <b:BlazorWebView.RootComponents>
                 <b:RootComponent Selector="#app" ComponentType="{x:Type pages:FormWindow}" />
