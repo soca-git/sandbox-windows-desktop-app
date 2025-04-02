@@ -11,10 +11,6 @@
         mc:Ignorable="d"
         Title="MainWindow" Width="800">
 
-    <Window.DataContext>
-        <vm:MainWindowViewModel />
-    </Window.DataContext>
-
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
@@ -23,14 +19,19 @@
         <StackPanel Grid.Column="0">
             <TextBlock Text="WPF" HorizontalAlignment="Center" />
             <Button Content="Play sound" Command="{Binding BeepCommand}" />
+            <Button Content="Open another window" Command="{Binding OpenAnotherWindowCommand}" />
             <Button Content="Inactive" Command="{Binding InactiveCommand}" />
             <Button Content="Start" Command="{Binding StartCounterCommand}" />
+            <StackPanel Orientation="Horizontal">
+               <Label Content="Counter:" />
+               <Label Content="{Binding Counter}" />
+            </StackPanel>
             <TextBlock Text="{Binding SomeText}" />
         </StackPanel>
 
         <StackPanel Orientation="Vertical" Grid.Column="1">
             <TextBlock Text="BlazorWebView" HorizontalAlignment="Center" />
-            <b:BlazorWebView Name="WebViewComponent" MinHeight="400" HostPage="wwwroot/index.html" Services="{DynamicResource services}">
+            <b:BlazorWebView Name="WebViewComponent" Height="750" HostPage="wwwroot/index.html" Services="{DynamicResource services}">
                 <b:BlazorWebView.RootComponents>
                     <b:RootComponent Selector="#app" ComponentType="{x:Type pages:Home}" />
                 </b:BlazorWebView.RootComponents>

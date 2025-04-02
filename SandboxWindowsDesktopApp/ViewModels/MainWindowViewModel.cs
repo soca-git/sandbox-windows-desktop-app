@@ -8,7 +8,7 @@ namespace SandboxWindowsDesktopApp.ViewModels
     public class MainWindowViewModel : INotifyPropertyChanged
     {
         private WindowA? windowA;
-
+        private string someText;
         private int counter;
         private bool counterActive;
         private CancellationTokenSource counterToken = new();
@@ -56,7 +56,7 @@ namespace SandboxWindowsDesktopApp.ViewModels
                 await Task.CompletedTask;
             }, AsyncRelayCommandOptions.AllowConcurrentExecutions);
 
-            this.SomeText = $"This is a some sample text from the {nameof(MainWindowViewModel)}";
+            this.someText = $"This is a some sample text from the {nameof(MainWindowViewModel)}";
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;
@@ -69,7 +69,15 @@ namespace SandboxWindowsDesktopApp.ViewModels
 
         public ICommand StartCounterCommand { get; init; }
 
-        public string SomeText { get; set; }
+        public string SomeText
+        {
+            get => this.someText;
+            set
+            {
+                this.someText = value;
+                this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(SomeText)));
+            }
+        }
 
         public int Counter
         {
