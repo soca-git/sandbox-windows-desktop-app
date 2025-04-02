@@ -9,34 +9,16 @@
         d:DataContext="{d:DesignInstance Type=vm:MainWindowViewModel}"
         DataContext="{StaticResource MainWindowViewModel}"
         mc:Ignorable="d"
-        Title="MainWindow" Width="800">
+        Title="MainWindow" Width="800"
+        SizeToContent="Height">
 
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
-        <StackPanel Grid.Column="0">
-            <TextBlock Text="WPF" HorizontalAlignment="Center" />
-            <Button Content="Play sound" Command="{Binding BeepCommand}" />
-            <Button Content="Open another window" Command="{Binding OpenAnotherWindowCommand}" />
-            <Button Content="Inactive" Command="{Binding InactiveCommand}" />
-            <Button Content="Start" Command="{Binding StartCounterCommand}" />
-            <StackPanel Orientation="Horizontal">
-               <Label Content="Counter:" />
-               <Label Content="{Binding Counter}" />
-            </StackPanel>
-            <TextBlock Text="{Binding SomeText}" />
-        </StackPanel>
-
-        <StackPanel Orientation="Vertical" Grid.Column="1">
-         <TextBlock Text="BlazorWebView" Background="SlateBlue" Foreground="White" TextAlignment="Center" />
-            <b:BlazorWebView Name="WebViewComponent" Height="750" HostPage="wwwroot/index.html" Services="{DynamicResource services}">
-                <b:BlazorWebView.RootComponents>
-                    <b:RootComponent Selector="#app" ComponentType="{x:Type pages:Home}" />
-                </b:BlazorWebView.RootComponents>
-            </b:BlazorWebView>
-        </StackPanel>
-    </Grid>
+   <StackPanel Orientation="Vertical" Grid.Column="1">
+      <TextBlock Text="BlazorWebView" Background="SlateBlue" Foreground="White" TextAlignment="Center" Padding="10" />
+      <b:BlazorWebView Name="WebViewComponent" Height="800" HostPage="wwwroot/index.html" Services="{DynamicResource services}">
+         <b:BlazorWebView.RootComponents>
+            <b:RootComponent Selector="#app" ComponentType="{x:Type pages:Home}" />
+         </b:BlazorWebView.RootComponents>
+      </b:BlazorWebView>
+   </StackPanel>
 
 </Window>

@@ -8,6 +8,7 @@ namespace SandboxWindowsDesktopApp.ViewModels
     public class MainWindowViewModel : INotifyPropertyChanged
     {
         private WindowA? windowA;
+        private WindowB? windowB;
         private string someText;
         private int counter;
         private bool counterActive;
@@ -20,11 +21,17 @@ namespace SandboxWindowsDesktopApp.ViewModels
                 SystemSounds.Beep.Play();
             });
 
-            this.OpenAnotherWindowCommand = new RelayCommand(() =>
+            this.OpenWindowA = new RelayCommand(() =>
             {
                 this.windowA ??= new();
                 this.windowA.Show();
             }, () => !this.windowA?.IsVisible ?? true);
+
+            this.OpenWindowB = new RelayCommand(() =>
+            {
+                this.windowB ??= new();
+                this.windowB.Show();
+            }, () => !this.windowB?.IsVisible ?? true);
 
             this.InactiveCommand = new RelayCommand(() => {}, () => false);
 
@@ -63,7 +70,9 @@ namespace SandboxWindowsDesktopApp.ViewModels
 
         public ICommand BeepCommand { get; init; }
 
-        public ICommand OpenAnotherWindowCommand { get; init; }
+        public ICommand OpenWindowA { get; init; }
+
+        public ICommand OpenWindowB { get; init; }
 
         public ICommand InactiveCommand { get; init; }
 

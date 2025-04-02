@@ -6,15 +6,6 @@
 @inject FormWindowViewModel AnotherViewModel
 
 <div class="home-container">
-	<CommandButton Command="@ViewModel.BeepCommand" Text="Play sound" />
-	<CommandButton Command="@ViewModel.OpenAnotherWindowCommand" Text="Open another window" />
-	<CommandButton Command="@ViewModel.InactiveCommand" Text="Inactive" />
-	<CommandButton Command="@ViewModel.StartCounterCommand" Text="@(Observed(() => ViewModel.CounterActive) ? "Stop Counter" : "Start Counter")" />
-	<CounterDisplay Counter="@Observed(() => ViewModel.Counter)" />
-	<TextDisplay Text="@Observed(() => ViewModel.SomeText)" />
-	<TextDisplay Text="@Observed(() => AnotherViewModel.Name)" />
-	<TextDisplay Text="@Observed(() => AnotherViewModel.Description)" />
-	<InputTextArea @bind-Value=@ViewModel.SomeText />
-
-	<button class="btn-info" @onclick=@(() => InvokeAsync(StateHasChanged))>Render</button>
+	<CommandButton Command="@ViewModel.OpenWindowA" Text="Open blazor window" />
+	<CommandButton Command="@ViewModel.OpenWindowB" Text="Open xaml window" />
 </div>
