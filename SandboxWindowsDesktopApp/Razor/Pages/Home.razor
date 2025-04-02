@@ -5,8 +5,9 @@
 @inject MainWindowViewModel ViewModel
 @inject FormWindowViewModel AnotherViewModel
 
-<h3>[Component] Home</h3>
-<div class="buttons">
+<div class="home-container">
+	<h3>[Component] Home</h3>
+
 	<CommandButton Command="@ViewModel.BeepCommand" Text="Play sound" />
 	<CommandButton Command="@ViewModel.OpenAnotherWindowCommand" Text="Open another window" />
 	<CommandButton Command="@ViewModel.InactiveCommand" Text="Inactive" />
@@ -15,6 +16,7 @@
 	<TextDisplay Text="@Observed(() => ViewModel.SomeText)" />
 	<TextDisplay Text="@Observed(() => AnotherViewModel.Name)" />
 	<TextDisplay Text="@Observed(() => AnotherViewModel.Description)" />
+	<InputTextArea @bind-Value=@ViewModel.SomeText />
 
-	<button @onclick=@(() => InvokeAsync(StateHasChanged))>Render</button>
+	<button class="btn-info" @onclick=@(() => InvokeAsync(StateHasChanged))>Render</button>
 </div>
