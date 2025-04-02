@@ -30,6 +30,7 @@ public partial class App : Application
         this.serviceProvider = serviceCollection.BuildServiceProvider();
 
         Resources.AddRazorComponentsSupport(this.serviceProvider);
+        Resources.ConfigureViewModelsForXamlInjection(this.serviceProvider);
     }
 
     private void App_Exit(object sender, ExitEventArgs e)

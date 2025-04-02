@@ -6,6 +6,8 @@
         xmlns:pages="clr-namespace:SandboxWindowsDesktopApp.Razor.Pages" 
         xmlns:b="http://schemas.microsoft.com/winfx/2006/xaml/presentation/blazor"
         xmlns:vm="clr-namespace:SandboxWindowsDesktopApp.ViewModels"
+        d:DataContext="{d:DesignInstance Type=vm:MainWindowViewModel}"
+        DataContext="{StaticResource MainWindowViewModel}"
         mc:Ignorable="d"
         Title="MainWindow" Width="800">
 
