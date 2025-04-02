@@ -1,8 +1,6 @@
 ﻿
 .home-container {
    height: 100vh;
-   border: 1px dashed;
-   border-color: orangered;
 
    display: flex;
    flex-direction: column;
