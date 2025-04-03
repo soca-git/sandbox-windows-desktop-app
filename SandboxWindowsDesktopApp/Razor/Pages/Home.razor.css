@@ -16,3 +16,30 @@
    display: flex;
    flex-direction: column;
 }
+
+footer {
+    position: absolute;
+    bottom: 0px;
+    width: 100vw;
+    height: 30px;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background-color: mediumslateblue;
+}
+
+.footer-left {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-items: center;
+}
+
+.footer-right {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-items: center;
+}
