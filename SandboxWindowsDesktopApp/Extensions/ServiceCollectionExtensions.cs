@@ -10,6 +10,10 @@ namespace SandboxWindowsDesktopApp.Extensions
             services.AddWpfBlazorWebView();
             services.AddPhorkBlazorReactivity();
 
+#if DEBUG
+            services.AddBlazorWebViewDeveloperTools();
+#endif
+
             return services;
         }
     }
