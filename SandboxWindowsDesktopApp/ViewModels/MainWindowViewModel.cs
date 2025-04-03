@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Diagnostics;
 using System.Media;
 using System.Windows.Input;
 using CommunityToolkit.Mvvm.Input;
@@ -64,7 +65,19 @@ namespace SandboxWindowsDesktopApp.ViewModels
             }, AsyncRelayCommandOptions.AllowConcurrentExecutions);
 
             this.someText = $"This is a some sample text from the {nameof(MainWindowViewModel)}";
+
+            this.ModelInitialized += MainWindowViewModel_ModelInitialized;
+            this.ModelInitialized.Invoke(this, new());
+            Debug.WriteLine("Done");
         }
+
+        private async void MainWindowViewModel_ModelInitialized(object? sender, EventArgs e)
+        {
+            await Task.Delay(10000);
+            Debug.WriteLine("Done here");
+        }
+
+        public event EventHandler? ModelInitialized;
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
