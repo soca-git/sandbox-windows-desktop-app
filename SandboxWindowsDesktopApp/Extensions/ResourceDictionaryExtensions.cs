@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using SandboxWindowsDesktopApp.ViewModels;
 using System.Windows;
 
 namespace SandboxWindowsDesktopApp.Extensions
@@ -8,6 +9,13 @@ namespace SandboxWindowsDesktopApp.Extensions
         public static ResourceDictionary AddRazorComponentsSupport(this ResourceDictionary resources, ServiceProvider services)
         {
             resources.Add("services", services);
+
+            return resources;
+        }
+
+        public static ResourceDictionary ConfigureViewModelsForXamlInjection(this ResourceDictionary resources, ServiceProvider services)
+        {
+            resources.Add("MainWindowViewModel", services.GetRequiredService<MainWindowViewModel>());
 
             return resources;
         }

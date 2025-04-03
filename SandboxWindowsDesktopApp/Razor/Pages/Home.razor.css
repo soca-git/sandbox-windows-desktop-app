@@ -1,5 +1,18 @@
 ﻿
-.buttons {
-    display: flex;
-    flex-direction: column;
+.home-container {
+   margin-top: 50px;
+   height: 100vh;
+
+   display: flex;
+   flex-direction: row;
+}
+
+.navigation-bar {
+   height: 100%;
+   padding: 10px;
+
+   background-color: whitesmoke;
+
+   display: flex;
+   flex-direction: column;
 }
