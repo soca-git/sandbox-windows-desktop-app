@@ -25,7 +25,8 @@ public partial class App : Application
         ServiceCollection serviceCollection = new();
         serviceCollection
             .AddRazorComponentsSupport()
-            .ConfigureViewModels();
+            .ConfigureViewModels()
+            .AddBlazorBootstrap(); // third party bootstrap components
 
         this.serviceProvider = serviceCollection.BuildServiceProvider();
 
